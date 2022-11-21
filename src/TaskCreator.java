@@ -10,13 +10,13 @@ public class TaskCreator extends Stage{
 	TaskCreator(){
 		ComboBox<String> comboBox = new ComboBox<String>();
 		//VVV Names locations
-		comboBox.getItems().addAll("Daily","To Do","Plan","Event");
+		comboBox.getItems().addAll("Daily","ToDo","Plan","Event");
 		comboBox.setValue("Daily");
 		TextField textField = new TextField(); 
 		Button button = new Button("Add Task");
 		button.setOnAction(evt -> {
 			//VVV Creates and adds the task to the panel
-			Planner.taskPanel.AddTask(new Task(textField.getText(),comboBox.getValue()));
+			Planner.taskPanel.addTask(new Task(textField.getText(),comboBox.getValue()));
 			textField.clear();
 			close();
 		});

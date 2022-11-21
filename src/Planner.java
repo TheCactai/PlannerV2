@@ -33,6 +33,7 @@ public class Planner extends Application{
 		stage.setScene(scene);
 		stage.setTitle("Planner");
 		stage.show();
+		
+		FileControl.openFile();
 	}
-
 }
