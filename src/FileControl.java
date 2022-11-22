@@ -34,8 +34,9 @@ public class FileControl {
 		try {
 			FileWriter fileWriter = new FileWriter(saveFile);
 			printWriter = new PrintWriter(fileWriter);
+			//VVV Reads all the tasks from the ArrayList and writes their values into the file
 			for(int i = 0; i <savedTasks.size();i++) {
-				printWriter.println(" AddTask: "+ savedTasks.get(i).name +" TaskLocation: "+ savedTasks.get(i).location);
+				printWriter.println(" AddTask: "+ savedTasks.get(i).name +" Location: "+ savedTasks.get(i).location +" Date: "+ savedTasks.get(i).date);
 				printWriter.flush();
 			}
 			printWriter.close();
@@ -50,14 +51,19 @@ public class FileControl {
 			while (scanner.hasNext() && scanner.next().equals("AddTask:")) {
 				String name = "";
 				String location = "";
+				String date = "";
 				String next = scanner.next();
-				while(!next.equals("TaskLocation:")) {
+				//VVV Constructs the task name that consists of multiple strings into one string
+				while(!next.equals("Location:")) {
 					name += next;
 					name += " ";
 					next = scanner.next();
 				}
 				location = scanner.next();
-				Planner.taskPanel.addTask(new Task(name,location));
+				next = scanner.next();
+				date = scanner.next();
+				//VVVConstructs the task and adds it to its panel
+				Planner.taskPanel.addTask(new Task(name,location,date));
 			}
 			 scanner.close();
 		} catch (FileNotFoundException e) {e.printStackTrace();}
