@@ -1,0 +1,24 @@
+Button {
+  -fx-text-fill: darkblue;
+}
+TaskPanel{
+  -fx-background-color: gray;
+}
+.check-box>.box {
+  -fx-font-size: 20px;
+  -fx-background-insets: 0;
+  -fx-background-radius: 0;
+  -fx-background-color: transparent;
+}
+.check-box>.box>.mark {
+  
+  -fx-background-size: auto;
+  -fx-background-image: url("images/empty.png");
+  -fx-background-position: center;
+  -fx-background-repeat: stretch;
+  -fx-shape: none;
+}
+.check-box:selected>.box>.mark{
+  -fx-background-color: transparent;
+  -fx-background-image: url("images/complete.png");
+}

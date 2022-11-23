@@ -10,6 +10,6 @@ public class Task extends CheckBox {
 		this.location = location;
 		this.date = LocalDate.parse(date);
 		setText(name);
-		setOnAction(e -> Planner.taskPanel.removeTask(Task.this));
+		//setOnAction(e -> Planner.taskPanel.removeTask(Task.this));
 	}
 }

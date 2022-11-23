@@ -30,6 +30,7 @@ public class Planner extends Application{
 		root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,CornerRadii.EMPTY , Insets.EMPTY)));
 		
 		Scene scene = new Scene(root);
+		scene.getStylesheets().add("file:style_sheets/stylesheet.css");
 		stage.setScene(scene);
 		stage.setTitle("Planner");
 		stage.show();
