@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,6 +17,9 @@ public class FileControl {
 	
 	static void save(Task task) {
 		savedTasks.add(task);
+		writeFile();
+	}
+	static void save() {
 		writeFile();
 	}
 	static void remove(Task task) {
@@ -36,7 +40,7 @@ public class FileControl {
 			printWriter = new PrintWriter(fileWriter);
 			//VVV Reads all the tasks from the ArrayList and writes their values into the file
 			for(int i = 0; i <savedTasks.size();i++) {
-				printWriter.println(" AddTask: "+ savedTasks.get(i).name +" Location: "+ savedTasks.get(i).location +" Date: "+ savedTasks.get(i).date);
+				printWriter.println(" AddTask: "+ savedTasks.get(i).name +" Location: "+ savedTasks.get(i).location +" Date: "+ savedTasks.get(i).date +" State: "+ savedTasks.get(i).isSelected());
 				printWriter.flush();
 			}
 			printWriter.close();
@@ -50,8 +54,9 @@ public class FileControl {
 			Scanner scanner = new Scanner(bufferedReader);
 			while (scanner.hasNext() && scanner.next().equals("AddTask:")) {
 				String name = "";
-				String location = "";
-				String date = "";
+				String location;
+				LocalDate date;
+				boolean state;
 				String next = scanner.next();
 				//VVV Constructs the task name that consists of multiple strings into one string
 				while(!next.equals("Location:")) {
@@ -61,9 +66,11 @@ public class FileControl {
 				}
 				location = scanner.next();
 				next = scanner.next();
-				date = scanner.next();
+				date = LocalDate.parse(scanner.next());
+				next = scanner.next();
+				state = scanner.next().equals("true");
 				//VVVConstructs the task and adds it to its panel
-				Planner.taskPanel.addTask(new Task(name,location,date));
+				Planner.taskPanel.addTask(new Task(name,location,date,state));
 			}
 			 scanner.close();
 		} catch (FileNotFoundException e) {e.printStackTrace();}

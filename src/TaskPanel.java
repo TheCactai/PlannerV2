@@ -34,6 +34,7 @@ public class TaskPanel extends GridPane {
 		case "Event" : planList.getChildren().add(task);
 		break;
 		default : toDoList.getChildren().add(task);
+		break;
 		}
 	}
 	void removeTask(Task task) {
@@ -46,6 +47,7 @@ public class TaskPanel extends GridPane {
 		case "Event" : planList.getChildren().remove(task);
 		break;
 		default : toDoList.getChildren().remove(task);
+		break;
 		}
 	}
 }

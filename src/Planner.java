@@ -37,4 +37,7 @@ public class Planner extends Application{
 		
 		FileControl.openFile();
 	}
+	public void stop(){
+		FileControl.save();
+	}
 }
