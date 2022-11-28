@@ -12,7 +12,7 @@ public class TaskCreator extends Stage{
 	TaskCreator(){
 		ComboBox<String> comboBox = new ComboBox<String>();
 		//VVV Names locations
-		comboBox.getItems().addAll("Daily","ToDo","Plan","Event");
+		comboBox.getItems().addAll("Daily","ToDo","Event","Plan");
 		comboBox.setValue("Daily");
 		TextField textField = new TextField(); 
 		DatePicker datePicker = new DatePicker();
@@ -20,7 +20,16 @@ public class TaskCreator extends Stage{
 		//VVV Creates and adds the task to the panel on button press
 		Button button = new Button("Add Task");
 		button.setOnAction(evt -> {
-			Planner.taskPanel.addTask(new Task(textField.getText(),comboBox.getValue(),datePicker.getValue(), false));
+			switch(comboBox.getValue()) {
+			case "Daily" : new DailyTask(textField.getText(),comboBox.getValue(),datePicker.getValue(), false);
+			break;
+			case "ToDo" : new ToDoTask(textField.getText(),comboBox.getValue(),datePicker.getValue(), false);
+			break;
+			case "Event" : new EventTask(textField.getText(),comboBox.getValue(),datePicker.getValue(), false);
+			break;
+			default : new PlanTask(textField.getText(),comboBox.getValue(),datePicker.getValue(), false);
+			break;
+			}
 			textField.clear();
 			close();
 		});

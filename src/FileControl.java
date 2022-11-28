@@ -13,17 +13,12 @@ public class FileControl {
 	
 	static File saveFile = new File("saved_data.text");
 	static PrintWriter printWriter;
-	static ArrayList<Task> savedTasks = new ArrayList<Task>();
+	static ArrayList<DailyTask> dailyTasks = new ArrayList<DailyTask>();
+	static ArrayList<ToDoTask> toDoTasks = new ArrayList<ToDoTask>();
+	static ArrayList<EventTask> eventTasks = new ArrayList<EventTask>();
+	static ArrayList<PlanTask> planTasks = new ArrayList<PlanTask>();
 	
-	static void save(Task task) {
-		savedTasks.add(task);
-		writeFile();
-	}
 	static void save() {
-		writeFile();
-	}
-	static void remove(Task task) {
-		savedTasks.remove(task);
 		writeFile();
 	}
 	
@@ -39,40 +34,68 @@ public class FileControl {
 			FileWriter fileWriter = new FileWriter(saveFile);
 			printWriter = new PrintWriter(fileWriter);
 			//VVV Reads all the tasks from the ArrayList and writes their values into the file
-			for(int i = 0; i <savedTasks.size();i++) {
-				printWriter.println(" AddTask: "+ savedTasks.get(i).name +" Location: "+ savedTasks.get(i).location +" Date: "+ savedTasks.get(i).date +" State: "+ savedTasks.get(i).isSelected());
+			printWriter.println("Daily");
+			for(int i = 0; i <dailyTasks.size();i++) {
+				printWriter.println(" Task: "+ dailyTasks.get(i).name +" Date: "+ dailyTasks.get(i).date +" State: "+ dailyTasks.get(i).isSelected());
+				printWriter.flush();
+			}
+			printWriter.println("End");
+			printWriter.println("ToDo");
+			for(int i = 0; i <toDoTasks.size();i++) {
+				printWriter.println(" Task: "+ toDoTasks.get(i).name +" Date: "+ toDoTasks.get(i).date +" State: "+ toDoTasks.get(i).isSelected());
+				printWriter.flush();
+			}
+			printWriter.println("End");
+			printWriter.println("Event");
+			for(int i = 0; i <eventTasks.size();i++) {
+				printWriter.println(" Task: "+ eventTasks.get(i).name +" Date: "+ eventTasks.get(i).date +" State: "+ eventTasks.get(i).isSelected());
+				printWriter.flush();
+			}
+			printWriter.println("End");
+			printWriter.println("Plan");
+			for(int i = 0; i <planTasks.size();i++) {
+				printWriter.println(" Task: "+ planTasks.get(i).name +" Date: "+ planTasks.get(i).date +" State: "+ planTasks.get(i).isSelected());
 				printWriter.flush();
 			}
 			printWriter.close();
 			fileWriter.close();
 		} catch (IOException e) {e.printStackTrace();}
 	}
-	
 	static void loadSave() {
 		try {
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(saveFile));
 			Scanner scanner = new Scanner(bufferedReader);
-			while (scanner.hasNext() && scanner.next().equals("AddTask:")) {
-				String name = "";
-				String location;
-				LocalDate date;
-				boolean state;
-				String next = scanner.next();
-				//VVV Constructs the task name that consists of multiple strings into one string
-				while(!next.equals("Location:")) {
-					name += next;
-					name += " ";
+			while (scanner.hasNext()) {
+				String location = scanner.next();
+				while (scanner.hasNext() && scanner.next().equals("Task:")) {
+					String name = "";
+					LocalDate date;
+					boolean state;
+					String next = scanner.next();
+					//VVV Constructs the task name that consists of multiple strings into one string
+					while(!next.equals("Date:")) {
+						name += next;
+						name += " ";
+						next = scanner.next();
+					}
+					date = LocalDate.parse(scanner.next());
 					next = scanner.next();
+					state = scanner.next().equals("true");
+					//VVVConstructs the task
+					switch(location) {
+					case "Daily" : new DailyTask(name,location,date,state);
+					break;
+					case "ToDo" : new ToDoTask(name,location,date,state);
+					break;
+					case "Event" : new EventTask(name,location,date,state);
+					break;
+					default : new PlanTask(name,location,date,state);
+					break;
+					}
+					
 				}
-				location = scanner.next();
-				next = scanner.next();
-				date = LocalDate.parse(scanner.next());
-				next = scanner.next();
-				state = scanner.next().equals("true");
-				//VVVConstructs the task and adds it to its panel
-				Planner.taskPanel.addTask(new Task(name,location,date,state));
 			}
-			 scanner.close();
+			scanner.close();
 		} catch (FileNotFoundException e) {e.printStackTrace();}
 	}
 }
