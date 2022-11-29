@@ -2,13 +2,11 @@ import java.time.LocalDate;
 
 import javafx.scene.control.CheckBox;
 
-public class EventTask extends CheckBox {
-	String name;
-	String location;
+public class EventTask extends CheckBox{
+	TaskData data;
 	LocalDate date;
-	EventTask(String name,String location, LocalDate date, boolean state){
-		this.name = name;
-		this.location = location;
+	EventTask(String name,String location, LocalDate date, boolean state, TaskData taskData){
+		data = taskData;
 		this.date = date;
 		setSelected(state);
 		setText(name);
@@ -35,13 +33,13 @@ public class EventTask extends CheckBox {
 		
 	}
 	void removeTask(){
-		FileControl.eventTasks.remove(this);
 		TaskPanel.eventList.getChildren().remove(this);
+		FileControl.taskData.remove(data);
 		FileControl.save();
 	}
 	void addTask() {
 		TaskPanel.eventList.getChildren().add(this);
-		FileControl.eventTasks.add(this);
+		FileControl.taskData.add(data);
 		FileControl.save();
 	}
 }

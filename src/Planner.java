@@ -19,8 +19,8 @@ public class Planner extends Application{
 	@Override
 	public void start(Stage stage){
 		BorderPane root = new BorderPane();
-		
 		TaskCreator taskCreator = new TaskCreator();
+		
 		Button addTask = new Button("Add Task");
 		addTask.setOnAction(evt -> taskCreator.show());
 		
@@ -37,6 +37,7 @@ public class Planner extends Application{
 		
 		FileControl.openFile();
 	}
+	@Override
 	public void stop(){
 		FileControl.save();
 	}

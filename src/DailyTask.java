@@ -2,14 +2,10 @@ import java.time.LocalDate;
 
 import javafx.scene.control.CheckBox;
 
-public class DailyTask  extends CheckBox {
-	String name;
-	String location;
-	LocalDate date;
-	DailyTask(String name,String location, LocalDate date, boolean state){
-		this.name = name;
-		this.location = location;
-		this.date = date;
+public class DailyTask extends CheckBox {
+	TaskData data;
+	DailyTask(String name,String location, LocalDate date, boolean state, TaskData taskData){
+		data = taskData;
 		setSelected(state);
 		setText(name);
 		funcionallity();
@@ -20,13 +16,13 @@ public class DailyTask  extends CheckBox {
 		setOnAction(e -> removeTask());
 	}
 	void removeTask(){
-		FileControl.dailyTasks.remove(this);
 		TaskPanel.dailyList.getChildren().remove(this);
+		FileControl.taskData.remove(data);
 		FileControl.save();
 	}
 	void addTask() {
 		TaskPanel.dailyList.getChildren().add(this);
-		FileControl.dailyTasks.add(this);
+		FileControl.taskData.add(data);
 		FileControl.save();
 	}
 }
