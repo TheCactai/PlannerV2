@@ -12,7 +12,7 @@ public class TaskCreator extends Stage{
 	TaskCreator(){
 		ComboBox<String> comboBox = new ComboBox<String>();
 		//VVV Names locations
-		comboBox.getItems().addAll("Daily","ToDo","Event","Plan");
+		comboBox.getItems().addAll("Daily","ToDo","Event");
 		comboBox.setValue("Daily");
 		TextField textField = new TextField(); 
 		DatePicker datePicker = new DatePicker();

@@ -9,7 +9,7 @@ public class EventTask extends CheckBox{
 		data = taskData;
 		this.date = date;
 		setSelected(state);
-		setText(name);
+		setText(date+ " " + name);
 		funcionallity();
 		addTask();
 	}

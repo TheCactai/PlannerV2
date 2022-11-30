@@ -7,12 +7,10 @@ public class TaskPanel extends GridPane {
 	static VBox dailyList = new VBox();
 	static VBox toDoList = new VBox();
 	static VBox eventList = new VBox();
-	static VBox planList = new VBox();
 	TaskPanel(){
 		add(scrollablePanel(dailyList),0,0);
-		add(scrollablePanel(toDoList),1,0);
-		add(scrollablePanel(eventList),0,1);
-		add(scrollablePanel(planList),1,1);
+		add(scrollablePanel(toDoList),0,1);
+		add(scrollablePanel(eventList),1,1);
 		setHgap(10);
 		setVgap(10);
 	}

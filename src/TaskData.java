@@ -17,9 +17,7 @@ public class TaskData implements Serializable {
 		break;
 		case "ToDo" : new ToDoTask(name, location, date, state, this);
 		break;
-		case "Event" : new EventTask(name, location, date, state, this);
-		break;
-		default : new PlanTask(name, location, date, state, this);
+		default : new EventTask(name, location, date, state, this);
 		break;
 		}
 	}
