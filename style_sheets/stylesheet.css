@@ -1,18 +1,24 @@
-Button {
-  -fx-text-fill: darkblue;
+.root {
+	-fx-font-size: 20px;
+	-fx-font-weight: bold;
+	-fx-background-color: darkgrey;
+	-fx-hgap: 10;
+	-fx-vgap: 10;
 }
-TaskPanel{
-  -fx-background-color: gray;
+
+.button {
+  -fx-font-weight: normal;
+}
+
+.check-box{
+	-fx-font-size: 15px;
+	-fx-font-weight: normal;
 }
 .check-box>.box {
   -fx-font-size: 20px;
-  -fx-background-insets: 0;
-  -fx-background-radius: 0;
   -fx-background-color: transparent;
 }
 .check-box>.box>.mark {
-  
-  -fx-background-size: auto;
   -fx-background-image: url("images/empty.png");
   -fx-background-position: center;
   -fx-background-repeat: stretch;
@@ -21,4 +27,13 @@ TaskPanel{
 .check-box:selected>.box>.mark{
   -fx-background-color: transparent;
   -fx-background-image: url("images/complete.png");
+}
+
+.scroll-pane {
+	-fx-pref-height: 4000;
+	-fx-pref-width: 4000;
+}
+.scroll-pane > .viewport {
+	-fx-background-color: lightgray;
+	
 }

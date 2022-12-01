@@ -1,3 +1,5 @@
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -8,16 +10,18 @@ public class TaskPanel extends GridPane {
 	static VBox toDoList = new VBox();
 	static VBox eventList = new VBox();
 	TaskPanel(){
-		add(scrollablePanel(dailyList),0,0);
-		add(scrollablePanel(toDoList),0,1);
-		add(scrollablePanel(eventList),1,1);
+		setPadding(new Insets(10,25,25,25));
+		add(new Label("Daily:"),0,0);
+		add(scrollablePanel(dailyList),0,1);
+		add(new Label("To Do:"),0,2);
+		add(new Label("Event:"),1,2);
+		add(scrollablePanel(toDoList),0,3);
+		add(scrollablePanel(eventList),1,3);
 		setHgap(10);
 		setVgap(10);
 	}
 	ScrollPane scrollablePanel(VBox list) {
 		ScrollPane scroll = new ScrollPane();
-		scroll.setMaxSize(4000, 4000);//Sets size to take up all space possible
-		scroll.setPrefSize(scroll.getMaxHeight(), scroll.getMaxWidth());
 		scroll.setContent(list);
 		return scroll;
 	}

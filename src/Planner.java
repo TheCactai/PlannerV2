@@ -24,7 +24,7 @@ public class Planner extends Application{
 		Button addTask = new Button("Add Task");
 		addTask.setOnAction(evt -> taskCreator.show());
 		
-		root.setPrefSize(400, 400);
+		root.setPrefSize(900, 600);
 		root.setCenter(taskPanel);
 		root.setBottom(addTask);
 		root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,CornerRadii.EMPTY , Insets.EMPTY)));
