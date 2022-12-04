@@ -20,7 +20,7 @@ public class TaskCreator extends Stage{
 		//VVV Creates and adds the task to the panel on button press
 		Button button = new Button("Add Task");
 		button.setOnAction(evt -> {
-			new TaskData(textField.getText(),comboBox.getValue(),datePicker.getValue(), false);
+			new TaskData(textField.getText(),comboBox.getValue(),datePicker.getValue(), false, 0);
 			textField.clear();
 			close();
 		});

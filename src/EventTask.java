@@ -4,20 +4,18 @@ import javafx.scene.control.CheckBox;
 
 public class EventTask extends CheckBox{
 	TaskData data;
-	LocalDate date;
-	EventTask(String name,String location, LocalDate date, boolean state, TaskData taskData){
+	EventTask(TaskData taskData){
 		data = taskData;
-		this.date = date;
-		setSelected(state);
-		setText(date+ " " + name);
+		setSelected(taskData.state);
+		setText(data.date+ " " + taskData.name);
 		funcionallity();
 		addTask();
 	}
 	
 	void funcionallity() {
-		if(date.compareTo(LocalDate.now())<= 0) {
+		if(data.date.compareTo(LocalDate.now())<= 0) {
 			setDisable(false);
-			if(date.compareTo(LocalDate.now())== 0) {
+			if(data.date.compareTo(LocalDate.now())== 0) {
 				setOnAction(e -> {
 					System.out.println("Event task compleate");
 					removeTask();

@@ -38,7 +38,7 @@ public class FileControl {
 			Iterator<TaskData> itr = loadData.iterator();
 			while(itr.hasNext()){
 				TaskData data = itr.next();
-				new TaskData(data.name, data.location, data.date, data.state);
+				new TaskData(data.name, data.location, data.date, data.state, data.points);
 			}
 			
 		} catch (Exception e) {e.printStackTrace();}

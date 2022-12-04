@@ -1,13 +1,11 @@
-import java.time.LocalDate;
-
 import javafx.scene.control.CheckBox;
 
 public class ToDoTask extends CheckBox{
 	TaskData data;
-	ToDoTask(String name,String location, LocalDate date, boolean state, TaskData taskData){
+	ToDoTask(TaskData taskData){
 		data = taskData;
-		setSelected(state);
-		setText(name);
+		setSelected(taskData.state);
+		setText(taskData.name);
 		funcionallity();
 		addTask();
 	}

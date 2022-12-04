@@ -5,24 +5,22 @@ import javafx.scene.input.MouseButton;
 
 public class DailyTask extends CheckBox {
 	TaskData data;
-	String name;
-	int points;
-	DailyTask(String name,String location, LocalDate date, boolean state, TaskData taskData){
+	DailyTask(TaskData taskData){
 		data = taskData;
-		this.name = name;
-		setText(points +" "+ name);
+		dailyReset();
 		addTask();
+		setText(data.points +" "+ data.name);
 	}
 	@Override
 	public void fire() {
 		setOnMousePressed(e -> {
 			if(e.getButton()== MouseButton.PRIMARY) {
-				points++; setText(points +" "+ name);
+				data.points++; setText(data.points +" "+ data.name);
 			}
 			else {
-				points--; setText(points +" "+ name);
+				data.points--; setText(data.points +" "+ data.name);
 			}
-			setSelected(points>0);
+			setSelected(data.points>0);
 		});
 	}
 	void removeTask(){
@@ -34,5 +32,10 @@ public class DailyTask extends CheckBox {
 		TaskPanel.dailyList.getChildren().add(this);
 		FileControl.taskData.add(data);
 		FileControl.save();
+	}
+	void dailyReset () {
+		System.out.println(LocalDate.now().compareTo(data.date));
+		data.points -= LocalDate.now().compareTo(data.date);
+		data.date = LocalDate.now();
 	}
 }
