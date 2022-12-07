@@ -37,6 +37,10 @@
 	-fx-background-color: lightgray;
 	
 }
+.chart{
+	-fx-font-size: 15px;
+}
+
 #infoPane {
 	-fx-background-color: lightgray;
 }

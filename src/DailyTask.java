@@ -34,8 +34,10 @@ public class DailyTask extends CheckBox {
 		FileControl.save();
 	}
 	void dailyReset () {
-		System.out.println(LocalDate.now().compareTo(data.date));
-		data.points -= LocalDate.now().compareTo(data.date);
-		data.date = LocalDate.now();
+		if(LocalDate.now().compareTo(data.date) != 0) {
+			InfoPanel.addDailyTaskPoints(data.points);
+			data.points -= LocalDate.now().compareTo(data.date);
+			data.date = LocalDate.now();
+		}
 	}
 }
