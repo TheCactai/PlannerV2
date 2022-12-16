@@ -7,23 +7,23 @@ import javafx.scene.layout.GridPane;
 public class InfoPanel extends GridPane {
 	 
 	InfoPanel(){
-		add(getChart(), 0, 0);
+		addChart();
 		setId("infoPane");
 	}
 	
     static XYChart.Series series = new XYChart.Series();
 	
-	static getChart(){
+	void addChart(){
 		final NumberAxis xaxis = new NumberAxis(1,31,1);  
 		final NumberAxis yaxis = new NumberAxis(-20,20,1);
-        LineChart linechart = new LineChart(xaxis,yaxis);  
+        LineChart lineChart = new LineChart(xaxis,yaxis);  
         
         series.setName("Daily Tasks");
         
         setChartPoint();
 		
-        linechart.getData().add(series);
-		return linechart;
+        lineChart.getData().add(series);
+		add(lineChart, 0, 0);
 	}
 	static void setChartPoint(){
 		series.getData().add(new XYChart.Data(LocalDate.now().getDayOfMonth(),dailyTaskPoints));
